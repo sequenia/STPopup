@@ -73,11 +73,19 @@ typedef NS_ENUM(NSUInteger, STPopupTransitionStyle) {
 
 @interface STPopupController : NSObject
 
+
+typedef void(^PopupDissmisCompletion)();
 /**
  Style decides the final position of a popup.
  @see STPopupStyle
  */
+@property PopupDissmisCompletion popupDissmisCompletion;
+
+@property (nonatomic, assign) BOOL tapBGisHidden;
+
 @property (nonatomic, assign) STPopupStyle style;
+
+@property (nonatomic, strong) UIBarButtonItem *rightBarItem;
 
 /**
  Transition style used in presenting and dismissing the popup.
@@ -182,7 +190,7 @@ typedef NS_ENUM(NSUInteger, STPopupTransitionStyle) {
 
 /**
  Pops all view controllers from the stack until it reaches the root view controller
-
+ 
  @param animated YES if animated
  */
 - (void)popToRootViewControllerAnimated:(BOOL)animated;
